@@ -33,7 +33,7 @@ pipeline {
         }
 	    
 	    stage('Trivy Scan') {
-         
+         	steps {
         	 // Build Report
          	sh "trivy --no-progress --exit-code 0 -f json -o results.json mikebroomfield/snake"
          
@@ -42,6 +42,7 @@ pipeline {
          
          	// Fail on high & critical vulnerabilities
          	// sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL mikebroomfield/snake"
+		}
       }
 	    
     }
