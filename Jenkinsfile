@@ -63,6 +63,9 @@ pipeline {
         }
         success {
             echo 'I succeeeded!'
+	    sh """
+            curl -X POST -H "application/json" -d '{"state":"failure", "target_url":"${buildUrl}", "description":"Build Success", "context":"security assessment"}' "${gitStatusPostUrl}"
+               """
         }
         
         failure {
