@@ -1,10 +1,15 @@
+// set variables
+String payload = "${payload}"
+def jsonObject = readJSON text: payload
+String gitHash = "${jsonObject.pull_request.head.sha}"
+String buildUrl = "${BUILD_URL}"
+
 pipeline {
     agent 
 	{ label 'ubuntu-slave' }
 	
 	environment {
         GHTOKEN = credentials('githubtoken')
-	def gitHash
 	}
 
 	
@@ -13,8 +18,6 @@ pipeline {
         stage('Checkout SCM') {
             steps {
                 echo 'Checkout SCM'
-		    
-		    ${gitHash} = 'test123'
 		    script {
 			checkout scm
 		    }
@@ -24,7 +27,6 @@ pipeline {
 	    stage('Docker Build & Push') {
             steps {
                 echo 'Docker Build & Push'
-		    echo '$gitHash'
 		    script {
 			def app
                     	app = docker.build("mikebroomfield/snake:${env.BUILD_ID}")
