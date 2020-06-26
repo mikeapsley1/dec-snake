@@ -3,6 +3,7 @@ String payload = "${payload}"
 def jsonObject = readJSON text: payload
 String gitHash = "${jsonObject.pull_request.head.sha}"
 String buildUrl = "${BUILD_URL}"
+//String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/dec-snake/statuses/${gitHash}?access_token=$githubtoken"
 
 pipeline {
     agent 
@@ -10,6 +11,7 @@ pipeline {
 	
 	environment {
         GHTOKEN = credentials('githubtoken')
+	String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/dec-snake/statuses/${gitHash}?access_token=${githubtoken}"
 	}
 
 	
