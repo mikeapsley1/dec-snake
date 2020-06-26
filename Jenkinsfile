@@ -11,9 +11,9 @@ pipeline {
 
     stages {
 
-        stage(‘SCM Checkout’) {
+        stage(‘Code Checkout’) {
             steps {
-                echo ‘SCM Checkout’
+                echo ‘Code Checkout’
 
                 script {
                     checkout scm
