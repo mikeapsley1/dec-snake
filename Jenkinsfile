@@ -25,6 +25,7 @@ pipeline {
 			def app
                     	app = docker.build("mikebroomfield/snake:${env.BUILD_ID}")
                     	docker.withRegistry('https://registry.hub.docker.com', 'docker-creds') {
+			app.push()	
                      	app.push("latest")
 			}
 		    }
