@@ -11,7 +11,7 @@ pipeline {
 	
 	environment {
         GHTOKEN = credentials('githubtoken')
-	String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/dec-snake/statuses/${gitHash}?access_token=${githubtoken}"
+	String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/dec-snake/statuses/${gitHash}?access_token=$githubtoken"
 	}
 
 	
