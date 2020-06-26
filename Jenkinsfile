@@ -1,23 +1,42 @@
-node ('ubuntu-slave'){  
-    def app
-    stage('Cloning Git') {
-       checkout scm
-    }  
-    
- stage('Build') {
-       app = docker.build("mikebroomfield/snake")
-   }
-    
-    stage('Push') {
-     docker.withRegistry('https://registry.hub.docker.com', 'docker-creds') {
-            app.push("latest")
-        			}
-         }
+pipeline {
+    agent {
+        label ‘ubuntu-slave’
+    }
 
-  
-    stage('Pull') {
-         sh "docker-compose down"
-         sh "docker-compose up -d"	
-      }
+    environment {
+        GHTOKEN = credentials('githubtoken')
 
+    }
+
+
+    stages {
+
+        stage(‘SCM Checkout’) {
+            steps {
+                echo ‘SCM Checkout’
+
+                script {
+                    checkout scm
+                    }
+                }
+            }
+
+        stage(‘Docker Build & Push’) {
+            steps {
+                echo ‘Docker Build & Push’
+
+                script {
+		            def app
+                    app = docker.build("mikebroomfield/snake")
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-creds') {
+                    app.push("latest")
+			}
+
+                    }
+                }
+            }
+
+
+        }
+    }
 }
