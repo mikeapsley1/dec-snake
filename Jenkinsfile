@@ -47,7 +47,7 @@ pipeline {
          	sh "trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL mikebroomfield/snake"
          
          	// Fail on high & critical vulnerabilities
-         	// sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL mikebroomfield/snake"
+         	sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL mikebroomfield/snake"
 		}
       }
 	    
