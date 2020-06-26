@@ -11,15 +11,6 @@ pipeline {
 
     stages {
 
-        stage(‘Code Checkout’) {
-            steps {
-                echo ‘Code Checkout’
-
-                script {
-                  //  checkout scm
-                    }
-                }
-            }
 
         stage(‘Docker Build & Push’) {
             steps {
