@@ -11,17 +11,17 @@ pipeline {
 	
 	environment {
         GHTOKEN = credentials('githubtoken')
-	String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/dec-snake/statuses/${gitHash}?access_token=$githubtoken"
+	String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/dec-snake/statuses/${gitHash}?access_token=$GHTOKEN"
 	}
 
 	
     stages { 
 	    
-        stage('Checkout SCM') {
+        stage('Checkout PR') {
             steps {
                 echo 'Checkout SCM'
 		    script {
-			checkout scm
+			//checkout scm
 		    }
 		sh "git checkout ${gitHash}"
             }
@@ -65,7 +65,7 @@ pipeline {
             echo 'I succeeeded!'
 	    sh """
             curl -X POST -H "application/json" -d '{"state":"failure", "target_url":"${buildUrl}", "description":"Build Success", "context":"security assessment"}' "${gitStatusPostUrl}"
-               """
+            """
         }
         
         failure {
