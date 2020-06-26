@@ -2,11 +2,11 @@ pipeline {
     agent 
 	{ label 'ubuntu-slave' }
     stages { 
-        stage('Example') {
+        stage('Checkout SCM') {
             steps {
-                echo 'Hello World'
+                echo 'Checkout SCM'
 		    script {
-			scm checkout
+			checkout scm
 		    }
             }
         }
