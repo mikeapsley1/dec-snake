@@ -4,10 +4,6 @@ pipeline {
 	
 	environment {
         GHTOKEN = credentials('githubtoken')
-	String payload = "${payload}"
-	def jsonObject = readJSON text: payload
-	String gitHash = "${jsonObject.pull_request.head.sha}"
-	String buildUrl = "${BUILD_URL}"	
 	}
 
 	
