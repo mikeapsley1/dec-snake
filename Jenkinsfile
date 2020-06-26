@@ -16,7 +16,7 @@ pipeline {
                 echo ‘Code Checkout’
 
                 script {
-                    checkout scm
+                  //  checkout scm
                     }
                 }
             }
