@@ -20,9 +20,9 @@ pipeline {
         stage('Checkout PR') {
             steps {
                 echo 'Checkout SCM'
-		    script {
+		//    script {
 			//checkout scm
-		    }
+		//    }
 		sh "git checkout ${gitHash}"
             }
         }
