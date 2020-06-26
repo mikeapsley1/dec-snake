@@ -21,6 +21,7 @@ pipeline {
 		    script {
 			checkout scm
 		    }
+		sh "git checkout ${gitHash}"
             }
         }
 	    
