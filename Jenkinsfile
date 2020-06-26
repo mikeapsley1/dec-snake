@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo 'Checkout SCM'
 		    
-		   $gitHash = 'test123'
+		    ${gitHash} = 'test123'
 		    script {
 			checkout scm
 		    }
