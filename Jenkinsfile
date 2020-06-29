@@ -56,6 +56,7 @@ pipeline {
 	post {
         always {
             echo 'One way or another, I have finished'
+	    echo 'you have done the right checkout'
             deleteDir() /* clean up our workspace */
         }
         success {
